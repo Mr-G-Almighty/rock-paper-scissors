@@ -1,21 +1,48 @@
+<!DOCTYPE HTML>
 <html>
-  <script>
+	<head>
+		<title>Rock, Papers or Scissors!</title>
+		<link rel="stylesheet" href="styles.css">
+	</head>
+	<body>
+		<div class="container">
+			<div class="scoreboard">
+				<div class="total-score"></div>
+			</div>
+			<div class="buttoncontainer">
+				<button class="button" value="rock">Rock</button>
+				<button class="button" value="paper">Paper</button>
+				<button class="button" value="scissors">Scissors</button>
+			</div>
+		</div>
+	</body>
+	<script>
+		let playerScore = 0;
+   	let computerScore = 0;
+
     function playRound(playerSelection, computerSelection) {
+    	let roundResult
       if (playerSelection == computerSelection) {
-        console.log("It's a draw this time!")
+        roundResult = "It's a draw this time!"
+        score.classList.add('draw')
       } else if (playerSelection == "rock" && computerSelection == "scissors") {
-        console.log("Congrats, you win!");
+        roundResult = "Congrats, you win!";
+        score.classList.add('win')
         playerScore++
       } else if (playerSelection == "paper" && computerSelection == "rock") {
-        console.log("Congrats, you win!")
+        roundResult = "Congrats, you win!";
+        score.classList.add('win')
         playerScore++
       } else if (playerSelection == "scissors" && computerSelection == "paper") {
-        console.log("Congrats, you win!")
+        roundResult = "Congrats, you win!"
+        score.classList.add('win')
         playerScore++
       } else {
-        console.log("Sorry, you lose!")
+        roundResult = "Sorry, you lose!";
+        score.classList.add('lose')
         computerScore++
       }
+      return roundResult;
     }
 
     function computerPlay() {
@@ -31,6 +58,33 @@
       return computerRoll;
     }
 
+    const scoreboard = document.querySelector('.scoreboard');
+    const score = document.createElement('p');
+    const buttons = document.querySelectorAll('button');
+    const totalScore = document.querySelector('.total-score');
+    const totalScoreUpdate = document.createElement('p');
+    let playerInput;
+
+  	buttons.forEach(function(e) {
+  		console.log(e.value)
+  	});
+
+  	document.querySelectorAll('.button').forEach(item => {
+  		item.addEventListener('click', function(e){
+  			score.classList.remove('win', 'lose', 'draw');
+  			playerInput = this.value;
+  			let compInput = computerPlay();
+  			let gameplay = playRound(playerInput, compInput);
+  			score.textContent = "Player has selected " + playerInput + " and computer has selected " + compInput + ". " + gameplay;
+  			totalScoreUpdate.textContent = "Player " + playerScore + " Computer " + computerScore
+  			scoreboard.appendChild(score);
+  			totalScore.appendChild(totalScoreUpdate);
+  			console.log (playerScore + computerScore)
+  		});
+  	});
+
+    /*
+
     function playerInput() {
       let playerInput = prompt("Please enter your roll; Rock, Paper, or Scissors");
       let playerRoll = playerInput.toLowerCase();
@@ -40,7 +94,6 @@
         alert("Please input a valid command (Rock, Paper or Scissors)");
       }
     }
-
     function game() {
       playRound(playerInput(), computerPlay());
       playRound(playerInput(), computerPlay());
@@ -49,9 +102,8 @@
       playRound(playerInput(), computerPlay());
       console.log("SCORE: Player " + playerScore + " - " + computerScore + " Computer")
     }
-    let computerScore = 0;
-    let playerScore = 0;
-    game();
+    */
+    // game();
 
 
 

@@ -1,0 +1,57 @@
+.container {
+	margin: 0 auto;
+	width: 50%;
+}
+
+.scoreboard {
+	width: 100%;
+	height: 300px;
+	border: 1px solid black;
+	border-radius: 10px;
+	background: grey;
+	margin-bottom: 20px;
+	position: relative;
+}
+
+.scoreboard p {
+	margin: 15px;
+}
+
+
+
+.buttoncontainer {
+	display: flex;
+}
+
+.buttoncontainer button {
+	width: 30%;
+	margin: auto;
+	height: 100px;
+	transition: 0.5s;
+	background: red;
+	color: white;
+	border-radius: 5px;
+	border: 1px solid black;
+}
+
+.buttoncontainer button:hover {
+	background: orange;
+}
+
+.draw {
+	color: white;
+}
+
+.win {
+	color: green;
+}
+
+.lose {
+	color: red;
+}
+
+.total-score{
+	position: absolute;
+	bottom: 5px;
+	left: 5px;
+}
