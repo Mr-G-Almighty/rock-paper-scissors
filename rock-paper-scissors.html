@@ -1,0 +1,59 @@
+<html>
+  <script>
+    function playRound(playerSelection, computerSelection) {
+      if (playerSelection == computerSelection) {
+        console.log("It's a draw this time!")
+      } else if (playerSelection == "rock" && computerSelection == "scissors") {
+        console.log("Congrats, you win!");
+        playerScore++
+      } else if (playerSelection == "paper" && computerSelection == "rock") {
+        console.log("Congrats, you win!")
+        playerScore++
+      } else if (playerSelection == "scissors" && computerSelection == "paper") {
+        console.log("Congrats, you win!")
+        playerScore++
+      } else {
+        console.log("Sorry, you lose!")
+        computerScore++
+      }
+    }
+
+    function computerPlay() {
+      let roll = Math.floor(Math.random() * 3) + 1;
+      let computerRoll;
+      if (roll == 1) {
+        computerRoll = "rock";
+      } else if (roll == 2){
+        computerRoll = "paper";
+      } else {
+        computerRoll = "scissors";
+      }
+      return computerRoll;
+    }
+
+    function playerInput() {
+      let playerInput = prompt("Please enter your roll; Rock, Paper, or Scissors");
+      let playerRoll = playerInput.toLowerCase();
+      if (playerRoll == "rock" || playerRoll == "scissors" || playerRoll =="paper") {
+        return playerRoll
+      } else {
+        alert("Please input a valid command (Rock, Paper or Scissors)");
+      }
+    }
+
+    function game() {
+      playRound(playerInput(), computerPlay());
+      playRound(playerInput(), computerPlay());
+      playRound(playerInput(), computerPlay());
+      playRound(playerInput(), computerPlay());
+      playRound(playerInput(), computerPlay());
+      console.log("SCORE: Player " + playerScore + " - " + computerScore + " Computer")
+    }
+    let computerScore = 0;
+    let playerScore = 0;
+    game();
+
+
+
+  </script>
+</html>
